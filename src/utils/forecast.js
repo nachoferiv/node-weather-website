@@ -12,10 +12,14 @@ const forecast = (lat, long, callback) => {
             const msg = 'Unable to get the forecast for the given coords'
             callback(msg, undefined)
         } else {
+            console.log(body.daily.data[0])
             callback(undefined, {
-                summary: body.currently.summary,
+                summary: body.daily.data[0].summary,
+                maxTemp: body.daily.data[0].temperatureHigh,
+                minTemp: body.daily.data[0].temperatureLow,
                 temperature: body.currently.temperature,
                 precipChance: body.currently.precipProbability,
+                windSpeed: body.daily.data[0].windSpeed
             })
         }
     })

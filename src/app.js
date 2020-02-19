@@ -55,7 +55,7 @@ app.get('/weather', (req, res) => {
             })
         }
 
-        forecast(latitude, longitude, (err, { summary, temperature, precipChance }) => {
+        forecast(latitude, longitude, (err, { summary, maxTemp, minTemp, temperature, precipChance, windSpeed }) => {
 
             if (err) {
                 return res.send({
@@ -65,8 +65,9 @@ app.get('/weather', (req, res) => {
 
             res.send({
                 location,
-                forecast: summary + '. It is currently ' + temperature + ' degrees out.'
-                + ' There is ' + precipChance + ' chance of rain.'
+                forecast: summary + ' It is currently ' + temperature + ' degrees out. The maximum temperature is '
+                + maxTemp + ' and the minimum is ' + minTemp + '. There is ' + precipChance +
+                ' chance of rain and the windspeed is ' + windSpeed +'.'
             })
         })
     })    
